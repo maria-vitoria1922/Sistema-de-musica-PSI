@@ -79,5 +79,3 @@ def editar_faixa(faixa_id):
 
     albuns = session.query(Album).all()
     return render_template('faixas/editar_faixa.html', faixa=faixa, albuns=albuns)
-
-
