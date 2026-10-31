@@ -1,11 +1,10 @@
-
 {% extends "base.html" %}
 
 {% block title %}Início - Spotypobre{% endblock %}
 
 {% block content %}
    {% if usuario %}
-        <h2>Bem-vindo ao Spotypobre</h2>
+    <h2>Bem-vindo ao Spotypobre</h2>
         <p>Gerencie seus álbuns, faixas e artistas em um só lugar</p>
 
         <div class="cards">
@@ -24,6 +23,8 @@
                 <p>Adicione faixas de áudio e vincule aos álbuns cadastrados</p>
                 <a href="{{ url_for('faixas.faixas') }}" class="btn">Gerenciar Faixas</a>
             </div>
+
+            <a href="{{ url_for('auth.logout') }}" class="link-sair">Sair da plataforma</a>
         </div>
     {% else %}
         <section>
@@ -31,7 +32,7 @@
                 <h1>Spotypobre</h1>
                 <br>
                 <p>Entre na sua conta para organizar seus artistas, álbuns e faixas em um só lugar</p>
-                <a href="{{url_for('auth.login')}}">Entre na plataforma</a>
+                <a class="btn" href="{{url_for('auth.login')}}">Entre na plataforma</a>
             </div>
         </section>
     {% endif %}

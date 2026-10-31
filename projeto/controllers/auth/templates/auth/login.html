@@ -13,10 +13,14 @@
     <section class="form-section">
         <h3>Login</h3>
         <form action="{{ url_for('auth.login') }}" method="POST">
-                <label for="nome">Nome do  usuário:</label>
-                <input type="text" name="nome" placeholder="Ex: Digite seu nome">
-                <label for="senha">Senha do usuário:</label>
-                <input type="password" name="senha" placeholder="Insira sua senha">
+                <div>
+                    <label for="nome">Nome do  usuário:</label>
+                    <input type="text" name="nome" placeholder="Ex: Digite seu nome">
+                </div>
+                <div>
+                    <label for="senha">Senha do usuário:</label>
+                    <input type="password" name="senha" placeholder="Insira sua senha">
+                </div>
             <button type="submit" class="btn">Login</button>
         </form>
     </section>

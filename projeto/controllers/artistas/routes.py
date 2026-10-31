@@ -27,14 +27,14 @@ def cadastro_artista():
        session.commit()
 
        flash('Artista cadastrado.')
-       return redirect(url_for('artista.listar'))
+       return redirect(url_for('artistas.listar'))
 
 @artistas_bp.route('/listar_artistas')
 def listar():
     artistas = session.query(Artista).all()
     return render_template('artistas/artistas.html', artistas=artistas)
 
-@artistas_bp.route('/excluir_artista/<int:artista_id>')
+@artistas_bp.route('/excluir_artista/<int:artista_id>',  methods=['POST'])
 def excluir(artista_id):
     artista = session.query(Artista).get(artista_id)
     if artista:

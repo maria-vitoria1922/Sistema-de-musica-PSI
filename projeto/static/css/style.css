@@ -101,6 +101,18 @@ header nav a {
   margin-bottom: 20px;
 }
 
+.link-sair {
+    display: inline-block;
+    color: var(--cor-danger);
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.link-sair:hover {
+    color: var(--cor-danger-hover);
+}
+
 .form-section {
   background-color: var(--cor-dark-gray);
   padding: 25px;
@@ -150,8 +162,7 @@ input::placeholder {
   color: rgb(114, 114, 114);
 }
 
-.btn,
-button[type="submit"] {
+.btn{
   background-color: var(--cor-green);
   color: rgb(0, 0, 0);
   border: none;
@@ -162,6 +173,7 @@ button[type="submit"] {
   font-size: 15px;
   padding: 12px 24px;
   text-align: center;
+  margin-top: 10px;
 }
 
 select option {
@@ -177,4 +189,43 @@ select option {
 
 header nav a:hover {
   color: var(--cor-green);
+}
+
+.cadastrada > div {
+    background-color: var(--cor-dark-gray);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.cadastrada {
+    margin-top: 30px;
+}
+
+.cadastrada h4 {
+    color: var(--cor-white);
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.cadastrada p {
+    color: var(--cor-light-gray);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.cadastrada button {
+    background: transparent;
+    margin-top: 2px;
+    color: var(--cor-danger);
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+.cadastrada a {
+    background: transparent;
+    color: var(--cor-green);
+    text-decoration: none;
+    margin-right: 10px;
 }

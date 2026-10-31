@@ -8,41 +8,40 @@
     <section class="form-section">
         <h3>Cadastrar Faixa</h3>
         <form action="{{ url_for('faixas.cadastro_faixa') }}" method="POST">
-            <div class="">
+            <div>
                 <label for="titulo">Título da Faixa:</label>
                 <input type="text" id="titulo" name="titulo" placeholder="Ex: Por Enquanto">
             </div>
-
-            <div class="">
+            <div>
                 <label for="duracao">Duração (em segundos):</label>
                 <input type="number" id="duracao" name="duracao_segundos" placeholder="Ex: 354">
             </div>
-
-            <div class="card">
-                <label for="album_id">Álbum Pertencente:</label>
-                <select id="album_id" name="album_id">
-                    <option value="">-- Selecione um Álbum --</option>
-                    {% for album in albuns %}
-                        <option value="{{ album.id }}">{{ album.titulo }} ({{ album.ano }})</option>
-                    {% endfor %}
-                </select>
-            </div>
-
+            <div>
+            <label for="album_id">Álbum Pertencente:</label>
+            <select id="album_id" name="album_id">
+                <option value="">-- Selecione um Álbum --</option>
+                {% for album in albuns %}
+                    <option value="{{ album.id }}">{{ album.titulo }} ({{ album.ano }})</option>
+                {% endfor %}
+            </select>
             <button type="submit" class="btn">Salvar Faixa</button>
         </form>
     </section>
-    <section>
+    <section class="cadastrada">
         <h3>Faixas Cadastradas</h3>
 
         {% for faixa in faixas %}
-            <div class="card">
+            <div>
                 <h4>{{ faixa.titulo }}</h4>
                 <p>Duração: {{ faixa.duracao }} segundos</p>
                 <p>Álbum: {{ faixa.album.titulo }}</p>
+                <a href="{{ url_for('faixas.editar_faixa', faixa_id=faixa.id) }}">Editar</a>
+                <form action="{{ url_for('faixas.excluir', faixa_id=faixa.id) }}" method="POST">
+                    <button type="submit">Excluir</button>
+                </form>
             </div>
         {% else %}
             <p>Nenhuma faixa foi cadastrada</p>
         {% endfor %}
     </section>
-
 {% endblock %}

@@ -44,7 +44,7 @@ def listar_al():
 
     return render_template('albuns/albuns.html', albuns=albuns, artistas=artistas)
 
-@albuns_bp.route('/excluir_album/<int:album_id>')
+@albuns_bp.route('/excluir_album/<int:album_id>',  methods=['POST'])
 def excluir_al(album_id):
     album = session.query(Album).get(album_id)
     if album:

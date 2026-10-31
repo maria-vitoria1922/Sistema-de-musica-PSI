@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Faixa - Spotypobre{% endblock %}
+
+{% block content %}
+    <h2>Editar Faixa</h2>
+
+    <section class="form-section">
+        <form action="{{ url_for('faixas.editar_faixa', faixa_id=faixa.id) }}" method="POST">
+            <div>
+                <label for="titulo">Titulo da Faixa:</label>
+                <input type="text" name="titulo" value="{{ faixa.titulo }}">
+            </div>
+            <div>
+                <label for="duracao">Duração (em segundos):</label>
+                <input type="number" name="duracao_segundos" value="{{ faixa.duracao }}">
+            </div>
+            <div>
+                <label for="album_id">Álbum:</label>
+                <select name="album_id">
+                    {% for album in albuns %}
+                        <option value="{{ album.id }}" {% if album.id == faixa.album_id %}selected{% endif %}>{{ album.titulo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn">Salvar Alterações</button>
+        </form>
+    </section>
+{% endblock %}

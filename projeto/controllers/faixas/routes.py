@@ -44,7 +44,7 @@ def listar_fa():
     return render_template('faixas/faixas.html', faixas=faixas, albuns=albuns)
 
 
-@faixas_bp.route('/excluir_faixa/<int:faixa_id>')
+@faixas_bp.route('/excluir_faixa/<int:faixa_id>', methods=['POST'])
 def excluir(faixa_id):
     faixa = session.get(Faixa, faixa_id)
 
