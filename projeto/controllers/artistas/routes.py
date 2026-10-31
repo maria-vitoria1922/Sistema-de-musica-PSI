@@ -1,7 +1,7 @@
 from flask import request, render_template, flash, session as flask_session, redirect, url_for
 from controllers.artistas import artistas_bp
 from models.models import Album, Artista
-from models.models import session
+from database import session
 
 @artistas_bp.route("/artistas")
 def artistas():
