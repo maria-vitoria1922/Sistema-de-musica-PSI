@@ -14,12 +14,12 @@ def cadastro_artista():
 
        if not nome:
            flash('Preencha todos os campos!')
-           return render_template('artistas/artistas.html')
+           return redirect(url_for('artistas.listar'))
        
        artista_cadastrado = session.query(Artista).filter_by(nome=nome).first()
        if artista_cadastrado:
            flash('Esse artista já foi cadastrado.')
-           return render_template('artistas/artistas.html')
+           return redirect(url_for('artistas.listar'))
 
        usuario_id = flask_session['usuario_id']
        artista_novo = Artista(nome=nome, usuario_id=int(usuario_id))

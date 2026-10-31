@@ -6,7 +6,10 @@ from database import session
 
 @faixas_bp.route("/faixas")
 def faixas():
-    return render_template("faixas/faixas.html")
+    albuns = session.query(Album).all()
+    faixas = session.query(Faixa).all()
+
+    return render_template("faixas/faixas.html", albuns=albuns, faixas=faixas)
 
 @faixas_bp.route("/faixas/nova", methods=["POST"])
 def cadastro_faixa():

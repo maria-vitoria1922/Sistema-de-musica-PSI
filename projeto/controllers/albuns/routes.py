@@ -5,7 +5,10 @@ from database import session
 
 @albuns_bp.route("/albuns")
 def albuns():
-    return render_template("albuns/albuns.html")
+    artistas = session.query(Artista).all()
+    albuns = session.query(Album).all()
+
+    return render_template("albuns/albuns.html", artistas=artistas, albuns=albuns)
 
 @albuns_bp.route("/albuns/novo", methods=["POST"])
 def cadastro_album():
@@ -16,15 +19,17 @@ def cadastro_album():
     
            if not titulo or not ano or not artistas_id:
                flash('Preencha todos os campos!')
-               return render_template('albuns/albuns.html')
+               return redirect(url_for('albuns.albuns'))
            
-           album_cadastrado = session.query(Album).filter_by(titulo=titulo, artistas_id=int(artistas_id)).first()
+           album_cadastrado = session.query(Album).filter_by(titulo=titulo).first()
            if album_cadastrado:
                flash('Esse album já foi cadastrado.')
-               return render_template('albuns/albuns.html')
+               return redirect(url_for('albuns.albuns'))
     
            usuario_id = flask_session['usuario_id']
-           album_novo = Album(titulo=titulo, ano=int(ano), artistas_id=int(artistas_id),usuario_id=int(usuario_id))
+           artista = session.query(Artista).filter_by(id=int(artistas_id)).first()
+           album_novo = Album(titulo=titulo, ano=int(ano), usuario_id=int(usuario_id))
+           album_novo.artistas.append(artista)
            session.add(album_novo)
            session.commit()
     
@@ -35,7 +40,9 @@ def cadastro_album():
 @albuns_bp.route('/listar_albuns')
 def listar_al():
     albuns = session.query(Album).all()
-    return render_template('albuns/albuns.html', albuns=albuns)
+    artistas = session.query(Artista).all()
+
+    return render_template('albuns/albuns.html', albuns=albuns, artistas=artistas)
 
 @albuns_bp.route('/excluir_album/<int:album_id>')
 def excluir_al(album_id):
@@ -62,11 +69,3 @@ def editar_al(album_id):
             return redirect(url_for('albuns.listar_al'))
 
     return render_template('albuns/editar_al.html', album=album)
-
-
-
-
-
-
-
-

@@ -39,7 +39,7 @@ class Artista(Base):
     nome: Mapped[str] = mapped_column(String(64), unique=True)
     usuario_id: Mapped[int] = mapped_column(ForeignKey("usuarios.id"))
 
-    album: Mapped[List["Album"]] = relationship(secondary=artista_album_tabela, back_populates="artistas")
+    albuns: Mapped[List["Album"]] = relationship(secondary=artista_album_tabela, back_populates="artistas")
 
 class Faixa(Base):
 
@@ -51,4 +51,4 @@ class Faixa(Base):
     album_id: Mapped[int] = mapped_column(ForeignKey("albuns.id"))
     usuario_id: Mapped[int] = mapped_column(ForeignKey("usuarios.id"))
 
-    albuns: Mapped[List["Album"]] = relationship(back_populates="faixas")
+    album: Mapped["Album"] = relationship(back_populates="faixas")
