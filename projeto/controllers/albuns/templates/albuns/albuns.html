@@ -31,8 +31,15 @@
 
         {% for album in albuns %}
             <div class="">
-                <h4>{{ album.titulo }}</h4>
-                <p>Ano: {{ album.ano }}</p>
+                <h4>{{ album.titulo }} {{ album.ano }}</h4>
+                <p>Faixas deste álbum:</p>
+                <ul>
+                {% for faixa in album.faixas %}
+                    <li style="list-style-type: none; margin-bottom: 6px;">{{ faixa.titulo }} - {{ faixa.duracao }}s</li>
+                {% else %}
+                    <li style="list-style-type: none; margin-bottom: 6px;">Nenhuma faixa cadastrada para este album</li>
+                {% endfor %}
+                </ul>
                 <a href="{{ url_for('albuns.editar_al', album_id=album.id) }}" >Editar</a>
                 <form action="{{ url_for('albuns.excluir_al', album_id=album.id) }}" method="POST">
                     <button type="submit">Excluir</button>
